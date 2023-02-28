@@ -77,7 +77,7 @@ def main():
 	change=2
 	aaa=0
 
-	font=pygame.font.Font('freesansbold.ttf',32)
+	font=pygame.font.Font('freesansbold.ttf',20)
 	game_over=False
 	scorechange=1/12
 	pause=False
@@ -109,7 +109,7 @@ def main():
 		screen.blit(land3,(land3_x,700))	
 	
 	def score_num():
-			screen.blit(text,(550,300))	
+			screen.blit(text,(200,200))	
 			
 	def gameover():
 		screen.blit(game_o,(200,500))
@@ -231,16 +231,17 @@ def main():
 				running=False
 				pygame.quit()
 				
-			if ev.type == pygame.MOUSEBUTTONDOWN:
-				jump=True
-				if game_over:
-					score_saved=score
-					print(score_saved)
-					if score_saved > int(hi) :
-						file=open('highscore.txt','w')
-						file.write(str(int(score_saved)))
-						file.close()
-					main()
+			if ev.type == pygame.KEYDOWN:
+				if ev.key == pygame.K_SPACE:
+					jump=True
+					if game_over:
+						score_saved=score
+						print(score_saved)
+						if score_saved > int(hi) :
+							file=open('highscore.txt','w')
+							file.write(str(int(score_saved)))
+							file.close()
+						main()
 					
 		score_num()
 		high_s()
